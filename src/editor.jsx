@@ -53,6 +53,7 @@ export default class Editor extends Component {
         onChange={this.onChange}
         value={this.props.value}
         ref={ref => (this.state.reactAceEditor = ref)}
+        wrapEnabled={this.props.wrapEnabled}
       />
     );
   }
@@ -61,4 +62,5 @@ export default class Editor extends Component {
 Editor.propTypes = {
   edit: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
+  wrapEnabled: PropTypes.bool.isRequired,
 };
