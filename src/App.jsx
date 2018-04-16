@@ -43,7 +43,7 @@ class App extends Component {
         >
           <SplitPane
             split="vertical"
-            minSize={100}
+            minSize={300}
             defaultSize={300}
           >
             <Editor

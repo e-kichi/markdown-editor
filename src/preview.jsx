@@ -4,7 +4,14 @@ import marked from 'marked';
 import './marked.css';
 
 const style = {
-  width: '50%',
+  position: 'absolute',
+  top: '0px',
+  left: '0px',
+  right: '0px',
+  bottom: '0px',
+  padding: '10px',
+  height: '100%',
+  overflow: 'scroll',
 };
 
 export default class Preview extends React.Component {
@@ -16,9 +23,9 @@ export default class Preview extends React.Component {
     return (
       <div
         id="preview"
+        style={style}
         /* eslint-disable-line react/no-danger */
         dangerouslySetInnerHTML={{ __html: marked(this.props.value) }}
-        style={style}
       />
     );
   }
