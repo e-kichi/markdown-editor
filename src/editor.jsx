@@ -10,6 +10,7 @@ export default class Editor extends Component {
   constructor(props) {
     super(props);
     this.onChange = this.onChange.bind(this);
+    this.onResize = this.onResize.bind(this);
     this.state = {
       reactAceEditor: undefined,
     };
@@ -28,13 +29,13 @@ export default class Editor extends Component {
   }
 
   onResize() {
-    if (this.state === undefined) {
+    if (this.state === undefined
+        || this.state.reactAceEditor === undefined
+        || this.state.reactAceEditor.editor === undefined
+        || this.state.reactAceEditor.editor.resize === undefined) {
       return;
     }
-    if (this.state.reactAceEditor === undefined) {
-      return;
-    }
-    this.state.reactAceEditor.resize();
+    this.state.reactAceEditor.editor.resize();
   }
 
   render() {
