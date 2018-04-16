@@ -27,7 +27,6 @@ class App extends Component {
   readFile(fileInformation) {
     const reader = new FileReader();
     reader.onload = (event) => {
-      console.log(event.target.result);
       this.edit(event.target.result);
     };
     reader.readAsText(fileInformation);
