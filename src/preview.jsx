@@ -14,23 +14,17 @@ const style = {
   overflow: 'scroll',
 };
 
-export default class Preview extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-
-  render() {
-    return (
-      <div
-        id="preview"
-        style={style}
-        /* eslint-disable-line react/no-danger */
-        dangerouslySetInnerHTML={{ __html: marked(this.props.value) }}
-      />
-    );
-  }
-}
+/* eslint-disable react/no-danger */
+const Preview = props => (
+  <div
+    id="preview"
+    style={style}
+    dangerouslySetInnerHTML={{ __html: marked(props.value) }}
+  />
+);
 
 Preview.propTypes = {
   value: PropTypes.string.isRequired,
 };
+
+export default Preview;
