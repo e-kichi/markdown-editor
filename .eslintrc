@@ -1,0 +1,9 @@
+{
+  "extends": "airbnb",
+  "globals": {
+    "window": true,
+    "document": true,
+    "FileReader": true,
+    "console": true,
+  }
+}
