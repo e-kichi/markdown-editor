@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SplitPane from 'react-split-pane';
+import Dropzone from 'react-dropzone';
 import './App.css';
 import Editor from './editor';
 import Preview from './preview';
@@ -14,26 +15,47 @@ class App extends Component {
     };
   }
 
+  onDrop(acceptedFiles) {
+    const acceptedFile = acceptedFiles[0];
+    this.readFile(acceptedFile);
+  }
+
   edit(text) {
     this.setState({ value: text });
+  }
+
+  readFile(fileInformation) {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      console.log(event.target.result);
+      this.edit(event.target.result);
+    };
+    reader.readAsText(fileInformation);
   }
 
   render() {
     return (
       <div className="clearfix App" id="app">
-        <SplitPane
-          split="vertical"
-          minSize={100}
-          defaultSize={300}
+        <Dropzone
+          style={{}}
+          disableClick
+          multiple={false}
+          onDrop={(a) => { this.onDrop(a); }}
         >
-          <Editor
-            edit={this.edit}
-            value={this.state.value}
-          />
-          <Preview
-            value={this.state.value} // markedでhtmlにパースするときのデータ
-          />
-        </SplitPane>
+          <SplitPane
+            split="vertical"
+            minSize={100}
+            defaultSize={300}
+          >
+            <Editor
+              edit={this.edit}
+              value={this.state.value}
+            />
+            <Preview
+              value={this.state.value} // markedでhtmlにパースするときのデータ
+            />
+          </SplitPane>
+        </Dropzone>
       </div>
     );
   }
