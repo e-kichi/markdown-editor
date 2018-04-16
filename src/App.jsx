@@ -22,7 +22,7 @@ class App extends Component {
     return (
       <div className="clearfix App" id="app">
         <SplitPane
-          split="horizontal"
+          split="vertical"
           minSize={100}
           defaultSize={300}
         >

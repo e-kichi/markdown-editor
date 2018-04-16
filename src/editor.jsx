@@ -10,10 +10,31 @@ export default class Editor extends Component {
   constructor(props) {
     super(props);
     this.onChange = this.onChange.bind(this);
+    this.state = {
+      reactAceEditor: undefined,
+    };
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.onResize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResize);
   }
 
   onChange(text) {
     this.props.edit(text);
+  }
+
+  onResize() {
+    if (this.state === undefined) {
+      return;
+    }
+    if (this.state.reactAceEditor === undefined) {
+      return;
+    }
+    this.state.reactAceEditor.resize();
   }
 
   render() {
@@ -30,6 +51,7 @@ export default class Editor extends Component {
         editorProps={{ $blockScrolling: true }}
         onChange={this.onChange}
         value={this.props.value}
+        ref={ref => (this.state.reactAceEditor = ref)}
       />
     );
   }
