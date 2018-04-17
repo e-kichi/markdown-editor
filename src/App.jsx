@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SplitPane from 'react-split-pane';
 import Dropzone from 'react-dropzone';
+import DocumentTitle from 'react-document-title';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import './App.css';
 import Editor from './editor';
@@ -27,6 +28,7 @@ class App extends Component {
       value: '',
       editor: undefined,
       wrapEnabled: false,
+      filename: '',
     };
   }
 
@@ -56,6 +58,9 @@ class App extends Component {
     const reader = new FileReader();
     reader.onload = (event) => {
       this.edit(event.target.result);
+      this.setState({
+        filename: fileInformation.name,
+      });
     };
     reader.readAsText(fileInformation);
   }
@@ -63,35 +68,37 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider>
-        <div className="clearfix App" id="app">
-          <Dropzone
-            style={{}}
-            disableClick
-            multiple={false}
-            onDrop={(a) => { this.onDrop(a); }}
-          >
-            <SplitPane
-              split="vertical"
-              minSize={300}
-              defaultSize={300}
-              onDragFinished={() => { this.onSplitterDragFinished(); }}
-              style={splitPaneStyle}
+        <DocumentTitle title={this.state.filename}>
+          <div className="clearfix App" id="app">
+            <Dropzone
+              style={{}}
+              disableClick
+              multiple={false}
+              onDrop={(a) => { this.onDrop(a); }}
             >
-              <Editor
-                edit={this.edit}
-                value={this.state.value}
-                wrapEnabled={this.state.wrapEnabled}
-                ref={(ref) => { this.state.editor = ref; }}
+              <SplitPane
+                split="vertical"
+                minSize={300}
+                defaultSize={300}
+                onDragFinished={() => { this.onSplitterDragFinished(); }}
+                style={splitPaneStyle}
+              >
+                <Editor
+                  edit={this.edit}
+                  value={this.state.value}
+                  wrapEnabled={this.state.wrapEnabled}
+                  ref={(ref) => { this.state.editor = ref; }}
+                />
+                <Preview
+                  value={this.state.value} // markedでhtmlにパースするときのデータ
+                />
+              </SplitPane>
+              <Footer
+                onChangeWordWrap={(enabled) => { this.onChangeWrapEnabled(enabled); }}
               />
-              <Preview
-                value={this.state.value} // markedでhtmlにパースするときのデータ
-              />
-            </SplitPane>
-            <Footer
-              onChangeWordWrap={(enabled) => { this.onChangeWrapEnabled(enabled); }}
-            />
-          </Dropzone>
-        </div>
+            </Dropzone>
+          </div>
+        </DocumentTitle>
       </MuiThemeProvider>
     );
   }
