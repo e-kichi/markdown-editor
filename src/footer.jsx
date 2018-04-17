@@ -8,7 +8,13 @@ const footerStyle = {
   width: '100%',
   backgroundColor: '#c0c0c0',
   bottom: '0',
-  padding: '12px',
+  paddingTop: '12px',
+  paddingBottom: '12px',
+};
+
+const checkboxWordWrapStyle = {
+  width: '150px',
+  marginLeft: '24px',
 };
 
 const checkboxIconStyle = {
@@ -21,6 +27,7 @@ const Footer = props => (
       label="Word wrap"
       onCheck={(e, enabled) => { props.onChangeWordWrap(enabled); }}
       iconStyle={checkboxIconStyle}
+      style={checkboxWordWrapStyle}
     />
   </div>
 );
