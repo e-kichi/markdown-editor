@@ -79,7 +79,7 @@ class App extends Component {
               <SplitPane
                 split="vertical"
                 minSize={300}
-                defaultSize={300}
+                defaultSize={window.innerWidth / 2}
                 onDragFinished={() => { this.onSplitterDragFinished(); }}
                 style={splitPaneStyle}
               >
