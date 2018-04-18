@@ -4,6 +4,8 @@
     "window": true,
     "document": true,
     "FileReader": true,
+    "File": true,
+    "Blob": true,
     "console": true,
   },
   "rules": {

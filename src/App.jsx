@@ -36,6 +36,9 @@ class App extends Component {
 
   onDrop(acceptedFiles) {
     const acceptedFile = acceptedFiles[0];
+    if (!(acceptedFile instanceof Blob)) {
+      return;
+    }
     this.readFile(acceptedFile);
   }
 
