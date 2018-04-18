@@ -88,7 +88,7 @@ class App extends Component {
                   edit={this.edit}
                   value={this.state.value}
                   wrapEnabled={this.state.wrapEnabled}
-                  ref={(ref) => { this.state.editor = ref; }}
+                  ref={ref => (this.state.editor = ref)}
                 />
                 <Preview
                   value={this.state.value} // markedでhtmlにパースするときのデータ
