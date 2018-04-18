@@ -5,5 +5,8 @@
     "document": true,
     "FileReader": true,
     "console": true,
+  },
+  "rules": {
+    "no-console": ["error", { "allow": ["warn", "error"] }]
   }
 }
