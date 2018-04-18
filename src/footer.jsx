@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import RaisedButton from 'material-ui/RaisedButton';
 import Checkbox from 'material-ui/Checkbox';
 
 const footerStyle = {
@@ -24,13 +23,6 @@ const checkboxIconStyle = {
   fill: 'black',
 };
 
-const buttonSaveStyle = {
-  position: 'relative',
-  right: '0px',
-  height: '24px',
-  marginRight: '24px',
-};
-
 const Footer = props => (
   <div style={footerStyle}>
     <Checkbox
@@ -38,11 +30,6 @@ const Footer = props => (
       onCheck={(e, enabled) => { props.onChangeWordWrap(enabled); }}
       iconStyle={checkboxIconStyle}
       style={checkboxWordWrapStyle}
-    />
-    <RaisedButton
-      label="Save"
-      default
-      style={buttonSaveStyle}
     />
   </div>
 );

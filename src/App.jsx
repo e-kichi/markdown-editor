@@ -28,7 +28,9 @@ class App extends Component {
       value: '',
       editor: undefined,
       wrapEnabled: false,
-      filename: '',
+      fileInformation: {
+        name: '',
+      },
     };
   }
 
@@ -58,9 +60,7 @@ class App extends Component {
     const reader = new FileReader();
     reader.onload = (event) => {
       this.edit(event.target.result);
-      this.setState({
-        filename: fileInformation.name,
-      });
+      this.setState({ fileInformation });
     };
     reader.readAsText(fileInformation);
   }
@@ -68,7 +68,7 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider>
-        <DocumentTitle title={this.state.filename}>
+        <DocumentTitle title={this.state.fileInformation.name}>
           <div className="clearfix App" id="app">
             <Dropzone
               style={{}}
