@@ -65,6 +65,7 @@ class App extends Component {
     reader.readAsText(fileInformation);
   }
 
+  /* eslint-disable react/no-direct-mutation-state */
   render() {
     return (
       <MuiThemeProvider>

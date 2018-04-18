@@ -38,6 +38,7 @@ export default class Editor extends Component {
     this.state.reactAceEditor.editor.resize();
   }
 
+  /* eslint-disable react/no-direct-mutation-state */
   render() {
     return (
       <AceEditor
